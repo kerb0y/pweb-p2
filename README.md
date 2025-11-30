@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Sistem Data Mahasiswa (PWEB)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplikasi web untuk manajemen data mahasiswa Universitas Gunadarma, dibuat menggunakan React.js untuk frontend dan PHP Native untuk backend.
 
-## Available Scripts
+## Fitur
+- **CRUD Data Mahasiswa**: Tambah, Lihat, Ubah, dan Hapus data mahasiswa.
+- **Import CSV**: Fitur untuk mengimport banyak data sekaligus dari file CSV.
+- **Responsive Design**: Tampilan yang menyesuaikan dengan perangkat (Desktop & Mobile).
+- **Modern UI**: Menggunakan Tailwind CSS untuk tampilan yang menarik.
 
-In the project directory, you can run:
+## Teknologi yang Digunakan
+- **Frontend**: React.js, Tailwind CSS, Axios, React Router.
+- **Backend**: PHP Native (REST API).
+- **Database**: MySQL.
 
-### `npm start`
+## Persyaratan Sistem
+Sebelum menjalankan aplikasi, pastikan Anda telah menginstal:
+1. **Node.js** (untuk menjalankan React).
+2. **Laragon** atau **XAMPP** (untuk menjalankan PHP dan MySQL).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Cara Menjalankan Program (Dari Awal)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Setup Backend & Database
 
-### `npm test`
+1.  Pastikan **Laragon** atau **XAMPP** sudah berjalan (Start All).
+2.  Buat database baru di phpMyAdmin dengan nama: `pweb_bintang`.
+3.  Jalankan query SQL berikut untuk membuat tabel yang dibutuhkan:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```sql
+    CREATE TABLE mhs_bintang (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        npm VARCHAR(20) NOT NULL,
+        nama VARCHAR(100) NOT NULL,
+        kelas VARCHAR(20) NOT NULL
+    );
+    ```
 
-### `npm run build`
+4.  Pastikan file backend PHP (`connection.php`, `read.php`, dll) berada di root folder server lokal Anda.
+    *   Jika menggunakan Laragon: `C:\laragon\www\pweb_bintang\`
+    *   Pastikan file `connection.php` sudah sesuai dengan konfigurasi database Anda:
+        ```php
+        $host = "localhost";
+        $username = "root";
+        $password = ""; // Sesuaikan dengan password database Anda (kosongkan jika default XAMPP/Laragon)
+        $database = "pweb_bintang";
+        ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Setup Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  Buka terminal (CMD/PowerShell/Git Bash).
+2.  Masuk ke folder frontend (`fe2`):
+    ```bash
+    cd fe2
+    ```
+3.  Install dependencies (hanya perlu dilakukan sekali):
+    ```bash
+    npm install
+    ```
+4.  Jalankan aplikasi:
+    ```bash
+    npm start
+    ```
+5.  Browser akan otomatis terbuka di `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Struktur Folder
 
-### `npm run eject`
+- `/` (Root): Berisi file backend PHP (`read.php`, `create.php`, dll).
+- `/fe2`: Berisi source code frontend React.
+  - `/src/pages`: Halaman-halaman aplikasi.
+  - `/src/components`: Komponen reusable (Navbar, Modal, dll).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Catatan Penting
+- Pastikan backend berjalan di `http://localhost/pweb_bintang`. Jika URL berbeda, sesuaikan variabel `API_URL` di file `src/pages/DataMahasiswaPage.jsx`.
